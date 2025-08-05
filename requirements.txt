@@ -1,0 +1,10 @@
+torch
+torchvision
+transformers
+timm
+torch-geometric
+pandas
+scikit-learn
+wandb
+tensorboard
+Pillow

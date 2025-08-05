@@ -1,0 +1,22 @@
+[project]
+name = "fusionrec"
+version = "0.1.0"
+description = "FusionRec: Unified Contrastive-Attentive Fusion for Multi-modal and Behavior-aware Recommendation"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "lmdb>=1.7.3",
+    "matplotlib>=3.10.5",
+    "numpy>=2.0.2",
+    "pandas>=2.3.1",
+    "pillow>=11.3.0",
+    "scikit-learn>=1.6.1",
+    "tensorboard>=2.20.0",
+    "timm>=1.0.19",
+    "torch>=2.7.1",
+    "torch-geometric>=2.6.1",
+    "torch-scatter>=2.1.2",
+    "torchvision>=0.22.1",
+    "transformers>=4.54.1",
+    "wandb>=0.21.0",
+]
