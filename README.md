@@ -13,11 +13,6 @@ This is the Pytorch implementation for our FusionRec paper:
 - Pytorch >= 2.1.0
 
 
-To update all packages:
-```sh
-$ uv sync --upgrade
-```
-
 ## Dataset
 
 We provide three processed datasets: Baby, Sports, Clothing.
