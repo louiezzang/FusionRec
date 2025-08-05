@@ -1,24 +1,39 @@
 FusionRec: Unified Contrastive-Attentive Fusion for Multi-modal and Behavior-aware Recommendation
 ===
 
+## Introduction
 
-# Installation
+This is the Pytorch implementation for our FusionRec paper:
 
-## UV
-Create a virtual environment:
-```sh
-$ uv venv
-```
-To Activate the Virtual Environment:
-```sh
-$ source .venv/bin/activate
-```
-To exit a virtual environment:
-```sh
-$ deactivate
-```
+>FusionRec: Unified Contrastive-Attentive Fusion for Multi-modal and Behavior-aware Recommendation
+
+
+## Environment Requirement
+- python >= 3.9
+- Pytorch >= 2.1.0
+
 
 To update all packages:
 ```sh
 $ uv sync --upgrade
 ```
+
+## Dataset
+
+We provide three processed datasets: Baby, Sports, Clothing.
+
+Download from Google Drive: [Baby/Sports/Clothing](https://drive.google.com/drive/folders/1tU4IxYbLXMkp_DbIOPGvCry16uPvolLk)
+
+## Training
+  ```
+  cd ./src
+  python main.py
+  ```
+## Performance Comparison
+TBD
+
+## Citation
+TBD
+
+## Acknowledgement
+The structure of this code is  based on [MMRec](https://github.com/enoche/MMRec). Thank for their work.
