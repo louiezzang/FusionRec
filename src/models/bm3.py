@@ -64,7 +64,15 @@ class BM3(GeneralRecommender):
                              [1] * inter_M.nnz))
         data_dict.update(dict(zip(zip(inter_M_t.row + self.n_users, inter_M_t.col),
                                   [1] * inter_M_t.nnz)))
-        A._update(data_dict)
+
+        # -------------------------
+        # Modified by Younggue at Aug 16, 2025
+        # In scipy, dok_matrix no longer allows update.
+        # A._update(data_dict)
+        for (row, col), value in data_dict.items():
+            A[row, col] = value
+        # -------------------------
+
         # norm adj matrix
         sumArr = (A > 0).sum(axis=1)
         # add epsilon to avoid Devide by zero Warning

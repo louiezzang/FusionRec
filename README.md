@@ -172,10 +172,23 @@ We provide three processed datasets: Baby, Sports, Clothing.
 Download from Google Drive: [Baby/Sports/Clothing](https://drive.google.com/drive/folders/1tU4IxYbLXMkp_DbIOPGvCry16uPvolLk)
 
 ## Training
-  ```
-  cd ./src
-  python main.py
-  ```
+Change `use_gpu` to false in src/configs/overall.yaml file when training with the CPU:
+```yaml
+use_gpu: False
+```
+
+```sh
+cd ./src
+python main.py --model <MODEL_NAME: eg. BM3> --dataset <DATASET_NAME: eg. baby>
+
+# or
+
+python main.py -m <MODEL_NAME: eg. BM3> -d <DATASET_NAME: eg. baby>
+
+# when using `uv`
+uv run main.py -m <MODEL_NAME: eg. BM3> -d <DATASET_NAME: eg. baby>
+```
+
 ## Performance Comparison
 TBD
 

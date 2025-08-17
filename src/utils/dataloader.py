@@ -250,7 +250,7 @@ class TrainDataLoader(AbstractDataLoader):
         user_tensor = torch.tensor(cur_data[self.config['USER_ID_FIELD']].values).type(torch.LongTensor).to(self.device)
         item_tensor = torch.tensor(cur_data[self.config['ITEM_ID_FIELD']].values).type(torch.LongTensor).to(self.device)
         batch_tensor = torch.cat((torch.unsqueeze(user_tensor, 0),
-                                  torch.unsqueeze(item_tensor, 0)))
+                                  torch.unsqueeze(item_tensor, 0))) # shape: [2, batch_size]
         return batch_tensor
 
     def _get_full_uids_sample(self):

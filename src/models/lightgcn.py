@@ -86,7 +86,7 @@ class LightGCN(GeneralRecommender):
         
         # -------------------------
         # Modified by Younggue at Aug 5, 2025
-        # In Spicy, dok_matrix no longer allows update.
+        # In scipy, dok_matrix no longer allows update.
         # A._update(data_dict)
         for (row, col), value in data_dict.items():
             A[row, col] = value
