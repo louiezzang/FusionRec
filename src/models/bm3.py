@@ -62,6 +62,7 @@ class BM3(GeneralRecommender):
         inter_M_t = interaction_matrix.transpose()
         data_dict = dict(zip(zip(inter_M.row, inter_M.col + self.n_users),
                              [1] * inter_M.nnz))
+        # print(f"*** data_dict = {data_dict}")
         data_dict.update(dict(zip(zip(inter_M_t.row + self.n_users, inter_M_t.col),
                                   [1] * inter_M_t.nnz)))
 
@@ -161,3 +162,36 @@ class BM3(GeneralRecommender):
         score_mat_ui = torch.matmul(u_online[user], i_online.transpose(0, 1))
         return score_mat_ui
 
+    """Added by Younggue, Aug 17, 2025
+    How to Handle Unseen Users with Interacted Items in full_sort_predict
+    In the full_sort_predict function, you want to handle two things:
+        1. Embedding the unseen user: If the user hasn't been seen before, 
+           you can generate a representation for the user based on the items they've interacted with.
+        2. Prediction based on item interactions: Use the existing item embeddings and 
+           the interactions the user has already made to generate the user's preferences.
+    """
+    """
+    def full_sort_predict(self, interaction):
+        user = interaction[0]
+        u_online, i_online = self.forward()
+        u_online, i_online = self.predictor(u_online), self.predictor(i_online)
+
+        # Check if the user is unseen
+        if user not in self.user_embedding.weight:
+            # If the user is unseen, we use their interacted items to generate an embedding
+            interacted_items = interaction[1]  # List of items the unseen user has interacted with
+
+            # Get embeddings for the interacted items
+            interacted_item_embeddings = i_online[interacted_items]  # Embeddings of the interacted items
+
+            # Average the embeddings of the interacted items to create a proxy user embedding
+            user_embedding = interacted_item_embeddings.mean(dim=0, keepdim=True)
+
+            # Compute the similarity scores between the proxy user embedding and all item embeddings
+            score_mat_ui = torch.matmul(user_embedding, i_online.transpose(0, 1))
+        else:
+            # If the user is seen, use the normal prediction flow
+            score_mat_ui = torch.matmul(u_online[user], i_online.transpose(0, 1))
+        
+        return score_mat_ui
+    """
