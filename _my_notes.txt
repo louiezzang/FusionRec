@@ -1,0 +1,28 @@
+                             ┌────────────────────────┐
+                             │   User Interaction     │
+                             │     History (i₁ → i₂)  │
+                             └───────┬────────────────┘
+                                     │
+                   ┌────────────────┴───────────────┐
+                   ▼                                ▼
+        ┌──────────────────────┐          ┌──────────────────────┐
+        │  Behavior Graph      │          │ Sequence Encoder     │
+        │  (GCN or GAT)        │          │ (Transformer or GRU) │
+        └─────────┬────────────┘          └──────────┬───────────┘
+                  │                                  │
+              [Graph-based User Embed]        [Sequence-based User Embed]
+                            └──────┬──────────────┬─────┘
+                                   ▼              ▼
+                              ┌──────────────┬─────────────┐
+                              │  Modality Embeddings       │
+                              │  (Text, Image, Behavior)   │
+                              └──────────────┬─────────────┘
+                                             ▼
+                       ┌─────────────────────────────────────┐
+                       │   User-conditioned Attention Fusion │
+                       └─────────────────────────────────────┘
+                                             ▼
+                      ┌──────────────────────────────────────┐
+                      │  Contrastive Loss + Recommendation   │
+                      │     (CTR / BPR / Top-K Ranking)      │
+                      └──────────────────────────────────────┘
