@@ -63,3 +63,16 @@ for (row, col), value in data_dict.items():
     A[row, col] = value
 
 print(f"A = {A}")
+
+
+probability_matrix = torch.full([5, 10], 0.15)
+print(probability_matrix)
+print(probability_matrix.shape)
+
+masked_indices = torch.bernoulli(probability_matrix).bool()
+print("masked_indices:")
+print(masked_indices)
+
+indices_replaced = torch.bernoulli(torch.full([5, 10], 0.8)).bool() & masked_indices
+print("indices_replaced:")
+print(indices_replaced)

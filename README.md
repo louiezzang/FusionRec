@@ -159,6 +159,22 @@ Attention Fusion + Contrastive Head
         └──────────────────────────────────────────┘
 ```
 
+```
+      +----------------+        +----------------+       +-------------------+
+      |   Product Text |        |  Product Image |       | User Behavior Seq |
+      +--------+-------+        +--------+-------+       +--------+----------+
+               |                         |                        |
+        [BERT Encoder]           [ViT Image Encoder]     [Item Embedding + Transformer]
+               |                         |                        |
+     [Text Embedding: e_text]   [Image Embedding: e_img]  [Behavior Embedding: e_behav]
+               \\_________________________||______________________//
+                         → Attention Fusion → [Fused Embedding: e_fused]
+                                      |
+                        +-------------+-------------+
+                        | Contrastive Loss (InfoNCE)|
+                        +---------------------------+
+```
+
 
 ## Environment Requirement
 - python >= 3.9
